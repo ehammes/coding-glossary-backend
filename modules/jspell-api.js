@@ -8,7 +8,7 @@
 //   headers: {
 //     'content-type': 'application/json',
 //     'X-RapidAPI-Host': 'jspell-checker.p.rapidapi.com',
-//     'X-RapidAPI-Key': '824eac0680msh7f86adee43a7907p14b3f4jsn5231a602a10b'
+//     'X-RapidAPI-Key': ''
 //   },
 //   data: '{"language":"enUS","fieldvalues":"thiss is intresting","config":{"forceUpperCase":false,"ignoreIrregularCaps":false,"ignoreFirstCaps":true,"ignoreNumbers":true,"ignoreUpper":false,"ignoreDouble":false,"ignoreWordsWithNumbers":true}}'
 // };
