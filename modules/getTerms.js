@@ -4,9 +4,9 @@ const Term = require('../models/termSchema.js');
 
 async function getTerms(req, res, next) {
   let queryObj = {};
-  if (req.query.name) {
+  if (req.query.term_name) {
     queryObj = {
-      name: req.query.name,
+      term_name: req.query.term_name,
     };
   }
   try {
