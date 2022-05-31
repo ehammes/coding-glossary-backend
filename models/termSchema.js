@@ -12,6 +12,6 @@ const termSchema = new Schema({
   documentation_url: { type: String, required: false }
 });
 
-const termModel = mongoose.model('term', termSchema);
+const termModel = mongoose.model('Term', termSchema);
 
 module.exports = termModel;
