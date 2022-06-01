@@ -36,12 +36,3 @@ async function newTerm(req, res, next) {
 }
 
 module.exports = newTerm;
-
-// async function newTerm(req, res, next) {
-//   try {
-//     let newTerm = await Term.create(req.body);
-//     res.status(200).send(newTerm);
-//   } catch (e) {
-//     next(e);
-//   }
-// }
