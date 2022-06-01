@@ -30,7 +30,6 @@ async function spellCheck(string) {
   parsedConfigData.fieldvalues = string;
   let stringifiedData = JSON.stringify(parsedConfigData);
   options.data = stringifiedData;
-  console.log(options);
   try {
     let spellCheckData = await axios.request(options);
     return spellCheckData.data;
