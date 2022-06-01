@@ -1,6 +1,8 @@
-# Code Fellows 301 - Final Project
+# Code Fellows 301 - Final Project - Glossary App
 
-## Glossary App
+## Deployed Heroku App
+
+[git.heroku.com/team-blue-301d85.git](git.heroku.com/team-blue-301d85.git)
 
 ## Members
 
