@@ -6,9 +6,18 @@ const spellCheck = require('./jspell-api.js');
 async function updateTerm(req, res, next) {
   try {
     const { term_name, definition, user_email, category, documentation_url, override } = req.body;
-    let spellCheckedName = await spellCheck(term_name);
-    let spellCheckedDef = await spellCheck(definition);
-    if (override || (spellCheckedName.spellingErrorCount === 0 && spellCheckedDef.spellingErrorCount === 0)) {
+    let spellCheckedName;
+    let spellCheckedDef;
+    if (override) {
+      const updatedTerm = await Term.findByIdAndUpdate(req.params.id, { term_name, definition, user_email, category, documentation_url }, { new: true, overwrite: true });
+      res.status(200).send(updatedTerm);
+      return;
+    }
+    else {
+      spellCheckedDef = await spellCheck(definition);
+      spellCheckedName = await spellCheck(term_name);
+    }
+    if (spellCheckedName.spellingErrorCount === 0 && spellCheckedDef.spellingErrorCount === 0) {
       const updatedTerm = await Term.findByIdAndUpdate(req.params.id, { term_name, definition, user_email, category, documentation_url }, { new: true, overwrite: true });
       res.status(200).send(updatedTerm);
     } else if (spellCheckedName.spellingErrorCount !== 0 && spellCheckedDef.spellingErrorCount !== 0) {
