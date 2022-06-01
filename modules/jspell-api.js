@@ -12,7 +12,7 @@ const options = {
   },
   data: `{
     "language": "enUS",
-    "fieldvalues": "this is intresting",
+    "fieldvalues": "",
     "config": {
       "forceUpperCase": false,
       "ignoreIrregularCaps": false,
@@ -25,27 +25,18 @@ const options = {
   }`
 };
 
-let spellCheck = () => {
-  axios.request(options).then(function (response) {
-    console.log(response.data);
-    return response.data;
-  }).catch(function (error) {
-    console.error(error);
-  });
-};
-
-
-// async function spellCheck(req, res, next) {
-//   try {
-//     let errorsResponse = await axios.request(options);
-//     if (errorsResponse.spellingErrorCount !== 0) {
-//       res.status(200).send(errorsResponse.elements[0].errors);
-//     } else {
-//       res.status(200).send([]);
-//     }
-//   } catch (e) {
-//     next(e);
-//   }
-// }
+async function spellCheck(string) {
+  let parsedConfigData = JSON.parse(options.data);
+  parsedConfigData.fieldvalues = string;
+  let stringifiedData = JSON.stringify(parsedConfigData);
+  options.data = stringifiedData;
+  console.log(options);
+  try {
+    let spellCheckData = await axios.request(options);
+    return spellCheckData.data;
+  } catch (e) {
+    console.error(e);
+  }
+}
 
 module.exports = spellCheck;
