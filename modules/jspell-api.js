@@ -1,20 +1,42 @@
-// STARTER CODE FROM JSPELL DOCUMENTATION
+'use strict';
 
-// const axios = require("axios");
+const axios = require('axios');
 
-// const options = {
-//   method: 'POST',
-//   url: 'https://jspell-checker.p.rapidapi.com/check',
-//   headers: {
-//     'content-type': 'application/json',
-//     'X-RapidAPI-Host': 'jspell-checker.p.rapidapi.com',
-//     'X-RapidAPI-Key': ''
-//   },
-//   data: '{"language":"enUS","fieldvalues":"thiss is intresting","config":{"forceUpperCase":false,"ignoreIrregularCaps":false,"ignoreFirstCaps":true,"ignoreNumbers":true,"ignoreUpper":false,"ignoreDouble":false,"ignoreWordsWithNumbers":true}}'
-// };
+const options = {
+  method: 'POST',
+  url: 'https://jspell-checker.p.rapidapi.com/check',
+  headers: {
+    'content-type': 'application/json',
+    'X-RapidAPI-Host': 'jspell-checker.p.rapidapi.com',
+    'X-RapidAPI-Key': `${process.env.JSPELL_API_KEY}`
+  },
+  data: `{
+    "language": "enUS",
+    "fieldvalues": "",
+    "config": {
+      "forceUpperCase": false,
+      "ignoreIrregularCaps": false,
+      "ignoreFirstCaps": true,
+      "ignoreNumbers": true,
+      "ignoreUpper": false,
+      "ignoreDouble": false,
+      "ignoreWordsWithNumbers": true
+    }
+  }`
+};
 
-// axios.request(options).then(function (response) {
-// 	console.log(response.data);
-// }).catch(function (error) {
-// 	console.error(error);
-// });
+async function spellCheck(string) {
+  let parsedConfigData = JSON.parse(options.data);
+  parsedConfigData.fieldvalues = string;
+  let stringifiedData = JSON.stringify(parsedConfigData);
+  options.data = stringifiedData;
+  console.log(options);
+  try {
+    let spellCheckData = await axios.request(options);
+    return spellCheckData.data;
+  } catch (e) {
+    console.error(e);
+  }
+}
+
+module.exports = spellCheck;

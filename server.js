@@ -39,7 +39,7 @@ app.post('/terms', postTerm);
 
 app.delete('/terms/:id', deleteTerm);
 
-app.put('terms/:id', updateTerm);
+app.put('/terms/:id', updateTerm);
 
 app.get('/test', (req, res) => {
   res.send('test received');
