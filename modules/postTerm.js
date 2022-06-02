@@ -8,7 +8,7 @@ async function newTerm(req, res, next) {
   verifyUser(req, async (err, user) => {
     if (err) {
       console.error(err);
-      res.send('invalid token');
+      res.status(401).send('invalid token');
     } else {
       try {
         const { term_name, definition, override } = req.body;
@@ -18,8 +18,7 @@ async function newTerm(req, res, next) {
           const newTerm = await Term.create(req.body);
           res.status(200).send(newTerm);
           return;
-        }
-        else {
+        } else {
           spellCheckedDef = await spellCheck(definition);
           spellCheckedName = await spellCheck(term_name);
         }
