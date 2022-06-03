@@ -10,7 +10,9 @@ async function getTerms(req, res, next) {
     };
   }
   try {
-    let results = await Term.find(queryObj);
+    let results = await Term.find(queryObj)
+      .collation({ 'locale': 'en' })
+      .sort({ term_name: 1 });
     res.status(200).send(results);
   } catch (e) {
     next(e);
