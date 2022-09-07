@@ -1,14 +1,14 @@
-# Code Fellows 301 - Final Project - Glossary App
+# Glossary App
 
-## Deployed Heroku App
+## Deployed Backend
 
-[git.heroku.com/team-blue-301d85.git](git.heroku.com/team-blue-301d85.git)
+[Heroku Backend](https://team-blue-301d85.herokuapp.com/terms)
 
-## Members
+## Team Members
 
+- Elizabeth Hammes
 - Guy Farley
 - Benjamin Small
-- Elizabeth Hammes
 - Brady Davenport
 
 ## Description
